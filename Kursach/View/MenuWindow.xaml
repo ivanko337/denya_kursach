@@ -1,0 +1,81 @@
+﻿<Window x:Class="Kursach.View.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursach.View"
+        mc:Ignorable="d"
+        Title="MenuWindow" MaxHeight="650" MaxWidth="5000" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="3">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Категория:" Margin="3" />
+                        <ComboBox x:Name="categoryComboBox" Margin="3" Width="100" Height="25" />
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="3">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Цена:" Margin="3" />
+                        <Label Content="От: " Margin="1 3 3 3" />
+                        <TextBox x:Name="priceFromTextBox" Width="55" Height="20" Margin="3" />
+                        <Label Content="До: " Margin="1 3 3 3" />
+                        <TextBox x:Name="priceToTextBox" Width="55" Height="20" Margin="3" />
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="3">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Вес:" Margin="3" />
+                        <Label Content="От: " Margin="1 3 3 3" />
+                        <TextBox x:Name="weightFromTextBox" Width="55" Height="20" Margin="3" />
+                        <Label Content="До: " Margin="1 3 3 3" />
+                        <TextBox x:Name="weightToTextBox" Width="55" Height="20" Margin="3" />
+                    </StackPanel>
+                </Border>
+                <Button x:Name="vegetariansButton" Content="Для вегетарианцев" Margin="3" />
+                <Button x:Name="resetSeatch" Content="Сбросить поиск" Margin="3" />
+            </StackPanel>
+        </Border>
+        <ListView Grid.Row="1" Margin="5">
+            <GridView>
+                <GridViewColumn Header="Фото товара">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImagePath}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Ингредиенты">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label FontSize="12" Content="{Binding ProductName}" />
+                                <ItemsControl ItemsSource="{Binding ProductComposition}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Label Content="{Binding}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Цена">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding ProductPrice}" HorizontalContentAlignment="Stretch" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+            </GridView>
+        </ListView>
+    </Grid>
+</Window>
