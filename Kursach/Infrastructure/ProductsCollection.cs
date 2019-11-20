@@ -18,7 +18,7 @@ namespace Kursach.Infrastructure
 
             foreach (DataRow row in table.Rows)
             {
-
+                Products.Add(new Product(row));
             }
         }
     }

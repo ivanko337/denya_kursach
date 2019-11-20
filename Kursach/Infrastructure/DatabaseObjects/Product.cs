@@ -16,6 +16,9 @@ namespace Kursach.Infrastructure.DatabaseObjects
 
         public Product(DataRow row)
         {
+            this.Id = Convert.ToInt32(row["id"]);
+            this.Name = Convert.ToString(row["p_name"]);
+            this.Price = Convert.ToDouble(row[""]); // ещё хз где будет считаться цена
             Ingredients = null; // будет метод, который селектнет имена ингредиентов и запихнёт в коллекцию
         }
     }
