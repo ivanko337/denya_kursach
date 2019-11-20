@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kursach.Model;
+using System;
+using System.Data;
 
 namespace Kursach.Infrastructure.DatabaseObjects
 {
@@ -16,7 +14,10 @@ namespace Kursach.Infrastructure.DatabaseObjects
         /// <param name="productId">id ингредиента, для которого нужно получить тип</param>
         public IngredientType(int ingredientId)
         {
-            // тут вот будет запрос к бд по этому поводу хД
+            DataRow row = Database.Instance.GetIngredientType(ingredientId);
+
+            this.Id = Convert.ToInt32(row["id"]);
+            this.Name = Convert.ToString(row["ingredient_type_name"]);
         }
     }
 }

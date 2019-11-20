@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 
 namespace Kursach.Infrastructure.DatabaseObjects
@@ -17,7 +13,7 @@ namespace Kursach.Infrastructure.DatabaseObjects
         public Ingredient(DataRow row)
         {
             this.Id = Convert.ToInt32(row["id"]);
-            this.Name = Convert.ToString(row[""]);
+            this.Name = Convert.ToString(row["i_name"]);
             this.IngredientType = new IngredientType(this.Id);
         }
     }

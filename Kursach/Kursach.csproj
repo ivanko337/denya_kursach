@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Infrastructure\DatabaseObjects\Ingredient.cs" />
+    <Compile Include="Infrastructure\DatabaseObjects\IngredientType.cs" />
+    <Compile Include="Infrastructure\DatabaseObjects\Order.cs" />
+    <Compile Include="Infrastructure\DatabaseObjects\Product.cs" />
+    <Compile Include="Infrastructure\DatabaseObjects\ProductType.cs" />
+    <Compile Include="Infrastructure\IngredientsCollection.cs" />
     <Compile Include="ViewModel\MenuWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\MenuWindow.xaml.cs">

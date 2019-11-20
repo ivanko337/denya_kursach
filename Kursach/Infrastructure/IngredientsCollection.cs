@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using Kursach.Infrastructure.DatabaseObjects;
+using Kursach.Model;
 
 namespace Kursach.Infrastructure
 {
@@ -12,8 +13,7 @@ namespace Kursach.Infrastructure
         
         public IngredientsCollection(int productId)
         {
-            // сюда будут селектнуты ингредиенты определённого блюда
-            DataTable table = new DataTable();
+            DataTable table = Database.Instance.GetProductIngredients(productId);
             foreach (DataRow row in table.Rows)
             {
                 Ingredients.Add(new Ingredient(row));
