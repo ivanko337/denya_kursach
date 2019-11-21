@@ -10,7 +10,7 @@ namespace Kursach.Model
 {
     public class Database
     {
-        private readonly string connectionString = "Initial catalog=Kursach";
+        private readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vgrit\source\repos\Kursach\Kursach\Kursach.mdf;Integrated Security=True";
 
         #region Singleton
         private static readonly object lockObj = new object();
@@ -30,6 +30,17 @@ namespace Kursach.Model
             }
         }
         #endregion
+
+        private void ExecuteQuery(string query)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         private DataSet LoadDataByQuery(string query)
         {
@@ -96,5 +107,14 @@ namespace Kursach.Model
         {
             return GetProducts("");
         }
+
+        public void DeleteFromTable(int id, string tableName)
+        {
+            string query = $"DELETE FROM {tableName} WHERE id = {id}";
+
+            ExecuteQuery(query);
+        }
+
+
     }
 }
