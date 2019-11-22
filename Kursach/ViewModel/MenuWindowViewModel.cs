@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Kursach.Infrastructure;
 using Kursach.Infrastructure.DatabaseObjects;
+using System.Data;
+using Kursach.Model;
 
 namespace Kursach.ViewModel
 {
@@ -16,6 +18,15 @@ namespace Kursach.ViewModel
         {
             get
             {
+                if(productsCollection == null)
+                {
+                    productsCollection = new ObservableCollection<Product>();
+                    DataTable table = Database.Instance.GetProducts(QueryCondition);
+                    foreach (DataRow row in table.Rows)
+                    {
+                        productsCollection.Add(new Product(row));
+                    }
+                }
                 return productsCollection;
             }
         }
