@@ -12,13 +12,13 @@ namespace Kursach
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductsOrders
+    public partial class IngridientsProduct
     {
-        public int id { get; set; }
+        public int Id { get; set; }
+        public int IngredientId { get; set; }
         public int ProductId { get; set; }
-        public int OrderId { get; set; }
     
-        public virtual Orders Orders { get; set; }
-        public virtual Products Products { get; set; }
+        public virtual Ingredient Ingredients { get; set; }
+        public virtual Product Products { get; set; }
     }
 }

@@ -12,20 +12,18 @@ namespace Kursach
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class IngredientType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
+        public IngredientType()
         {
-            this.ProductsOrders = new HashSet<ProductsOrders>();
+            this.Ingredients = new HashSet<Ingredient>();
         }
     
         public int Id { get; set; }
-        public int Discount { get; set; }
-        public bool IsCompleted { get; set; }
-        public System.DateTime OrderDate { get; set; }
+        public string IngredientTypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsOrders> ProductsOrders { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
     }
 }

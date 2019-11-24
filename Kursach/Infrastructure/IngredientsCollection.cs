@@ -16,7 +16,7 @@ namespace Kursach.Infrastructure
             DataTable table = Database.Instance.GetProductIngredients(productId);
             foreach (DataRow row in table.Rows)
             {
-                Ingredients.Add(new Ingredient(row));
+                //Ingredients.Add(new Ingredient(row));
             }
         }
     }

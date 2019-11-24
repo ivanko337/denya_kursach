@@ -12,13 +12,18 @@ namespace Kursach
     using System;
     using System.Collections.Generic;
     
-    public partial class IngridientsProducts
+    public partial class ProductsType
     {
-        public int Id { get; set; }
-        public int IngredientId { get; set; }
-        public int ProductId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductsType()
+        {
+            this.Products = new HashSet<Product>();
+        }
     
-        public virtual Ingredients Ingredients { get; set; }
-        public virtual Products Products { get; set; }
+        public int Id { get; set; }
+        public string TypeName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

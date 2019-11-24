@@ -4,30 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Kursach.Infrastructure;
-using Kursach.Infrastructure.DatabaseObjects;
 using System.Data;
-using Kursach.Model;
 
 namespace Kursach.ViewModel
 {
     public class MenuWindowViewModel : ViewModelBase
     {
-        private ObservableCollection<Product> productsCollection;
-        public ObservableCollection<Product> ProductsCollection
+        //private ObservableCollection<Product> productsCollection;
+        public List<Product> ProductsCollection
         {
             get
             {
-                if(productsCollection == null)
-                {
-                    productsCollection = new ObservableCollection<Product>();
-                    DataTable table = Database.Instance.GetProducts(QueryCondition);
-                    foreach (DataRow row in table.Rows)
-                    {
-                        productsCollection.Add(new Product(row));
-                    }
-                }
-                return productsCollection;
+                var dbContext = new KursachDBContext();
+
+                IQueryable<Product> query = dbContext.Products;
+
+                List<Product> products = query.ToList();
+
+                return products;
             }
         }
         public string QueryCondition { get; private set; }

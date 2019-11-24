@@ -51,7 +51,7 @@
                     <GridViewColumn Header="Фото товара" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding ImagePath}"/>
+                                <Image Source="{Binding ProductImagePath}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -59,16 +59,23 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Label FontSize="12" Content="{Binding ProductName}" />
-                                    <ItemsControl ItemsSource="{Binding ProductComposition}">
+                                    <Label FontSize="12" Content="{Binding Name}" />
+                                    <ListView ItemsSource="{Binding IngridientsProducts.Ingredients}">
+                                        <ListView.View>
+                                            <GridView>
+                                                
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <!--<ItemsControl ItemsSource="{Binding IngridientsProducts.Ingredients}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Label Content="{Binding}" />
+                                                <Label Content="{Binding Name}" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                    </ItemsControl>-->
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -76,7 +83,7 @@
                     <GridViewColumn Header="Цена" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Content="{Binding ProductPrice}" HorizontalContentAlignment="Stretch" />
+                                <Label Content="{Binding Price}" HorizontalContentAlignment="Stretch" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

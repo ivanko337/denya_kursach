@@ -12,12 +12,12 @@ namespace Kursach
     using System;
     using System.Collections.Generic;
     
-    public partial class Ingredients
+    public partial class Ingredient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ingredients()
+        public Ingredient()
         {
-            this.IngridientsProducts = new HashSet<IngridientsProducts>();
+            this.IngridientsProducts = new HashSet<IngridientsProduct>();
         }
     
         public int Id { get; set; }
@@ -25,8 +25,8 @@ namespace Kursach
         public int Group { get; set; }
         public decimal Weight { get; set; }
     
-        public virtual IngredientsTypes IngredientsTypes { get; set; }
+        public virtual IngredientType IngredientsTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IngridientsProducts> IngridientsProducts { get; set; }
+        public virtual ICollection<IngridientsProduct> IngridientsProducts { get; set; }
     }
 }

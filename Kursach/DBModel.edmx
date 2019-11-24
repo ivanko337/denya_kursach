@@ -173,7 +173,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Ingredients">
+        <EntityType Name="Ingredient">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -184,7 +184,7 @@
           <NavigationProperty Name="IngredientsTypes" Relationship="Self.FK__Ingredien__i_gro__3B75D760" FromRole="Ingredients" ToRole="IngredientsTypes" />
           <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__ingre__44FF419A" FromRole="Ingredients" ToRole="IngridientsProducts" />
         </EntityType>
-        <EntityType Name="IngredientsTypes">
+        <EntityType Name="IngredientType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -192,7 +192,7 @@
           <Property Name="IngredientTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingredien__i_gro__3B75D760" FromRole="IngredientsTypes" ToRole="Ingredients" />
         </EntityType>
-        <EntityType Name="IngridientsProducts">
+        <EntityType Name="IngridientsProduct">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -202,7 +202,7 @@
           <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingridien__ingre__44FF419A" FromRole="IngridientsProducts" ToRole="Ingredients" />
           <NavigationProperty Name="Products" Relationship="Self.FK__Ingridien__produ__45F365D3" FromRole="IngridientsProducts" ToRole="Products" />
         </EntityType>
-        <EntityType Name="Orders">
+        <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -212,7 +212,7 @@
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ProductsOrders" Relationship="Self.FK__ProductsO__order__49C3F6B7" FromRole="Orders" ToRole="ProductsOrders" />
         </EntityType>
-        <EntityType Name="Products">
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -225,7 +225,7 @@
           <NavigationProperty Name="ProductsTypes" Relationship="Self.FK__Products__produc__3E52440B" FromRole="Products" ToRole="ProductsTypes" />
           <NavigationProperty Name="ProductsOrders" Relationship="Self.FK__ProductsO__produ__48CFD27E" FromRole="Products" ToRole="ProductsOrders" />
         </EntityType>
-        <EntityType Name="ProductsOrders">
+        <EntityType Name="ProductsOrder">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -235,7 +235,7 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK__ProductsO__order__49C3F6B7" FromRole="ProductsOrders" ToRole="Orders" />
           <NavigationProperty Name="Products" Relationship="Self.FK__ProductsO__produ__48CFD27E" FromRole="ProductsOrders" ToRole="Products" />
         </EntityType>
-        <EntityType Name="ProductsTypes">
+        <EntityType Name="ProductsType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -244,8 +244,8 @@
           <NavigationProperty Name="Products" Relationship="Self.FK__Products__produc__3E52440B" FromRole="ProductsTypes" ToRole="Products" />
         </EntityType>
         <Association Name="FK__Ingredien__i_gro__3B75D760">
-          <End Role="IngredientsTypes" Type="Self.IngredientsTypes" Multiplicity="1" />
-          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <End Role="IngredientsTypes" Type="KursachModel.IngredientType" Multiplicity="1" />
+          <End Role="Ingredients" Type="KursachModel.Ingredient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IngredientsTypes">
               <PropertyRef Name="Id" />
@@ -256,8 +256,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Ingridien__ingre__44FF419A">
-          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
-          <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
+          <End Role="Ingredients" Type="KursachModel.Ingredient" Multiplicity="1" />
+          <End Role="IngridientsProducts" Type="KursachModel.IngridientsProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredients">
               <PropertyRef Name="Id" />
@@ -268,8 +268,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Ingridien__produ__45F365D3">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
+          <End Role="Products" Type="KursachModel.Product" Multiplicity="1" />
+          <End Role="IngridientsProducts" Type="KursachModel.IngridientsProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -280,8 +280,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductsO__order__49C3F6B7">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
+          <End Role="Orders" Type="KursachModel.Order" Multiplicity="1" />
+          <End Role="ProductsOrders" Type="KursachModel.ProductsOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="Id" />
@@ -292,8 +292,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Products__produc__3E52440B">
-          <End Role="ProductsTypes" Type="Self.ProductsTypes" Multiplicity="1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <End Role="ProductsTypes" Type="KursachModel.ProductsType" Multiplicity="1" />
+          <End Role="Products" Type="KursachModel.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductsTypes">
               <PropertyRef Name="Id" />
@@ -304,8 +304,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductsO__produ__48CFD27E">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
+          <End Role="Products" Type="KursachModel.Product" Multiplicity="1" />
+          <End Role="ProductsOrders" Type="KursachModel.ProductsOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -316,13 +316,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="KursachDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" />
-          <EntitySet Name="IngredientsTypes" EntityType="Self.IngredientsTypes" />
-          <EntitySet Name="IngridientsProducts" EntityType="Self.IngridientsProducts" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="Products" EntityType="Self.Products" />
-          <EntitySet Name="ProductsOrders" EntityType="Self.ProductsOrders" />
-          <EntitySet Name="ProductsTypes" EntityType="Self.ProductsTypes" />
+          <EntitySet Name="Ingredients" EntityType="KursachModel.Ingredient" />
+          <EntitySet Name="IngredientsTypes" EntityType="KursachModel.IngredientType" />
+          <EntitySet Name="IngridientsProducts" EntityType="KursachModel.IngridientsProduct" />
+          <EntitySet Name="Orders" EntityType="KursachModel.Order" />
+          <EntitySet Name="Products" EntityType="KursachModel.Product" />
+          <EntitySet Name="ProductsOrders" EntityType="KursachModel.ProductsOrder" />
+          <EntitySet Name="ProductsTypes" EntityType="KursachModel.ProductsType" />
           <AssociationSet Name="FK__Ingredien__i_gro__3B75D760" Association="Self.FK__Ingredien__i_gro__3B75D760">
             <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
             <End Role="Ingredients" EntitySet="Ingredients" />
@@ -355,7 +355,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="KursachModelStoreContainer" CdmEntityContainer="KursachDBContext">
           <EntitySetMapping Name="Ingredients">
-            <EntityTypeMapping TypeName="KursachModel.Ingredients">
+            <EntityTypeMapping TypeName="KursachModel.Ingredient">
               <MappingFragment StoreEntitySet="Ingredients">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="i_name" />
@@ -365,7 +365,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IngredientsTypes">
-            <EntityTypeMapping TypeName="KursachModel.IngredientsTypes">
+            <EntityTypeMapping TypeName="KursachModel.IngredientType">
               <MappingFragment StoreEntitySet="IngredientsTypes">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="IngredientTypeName" ColumnName="ingredient_type_name" />
@@ -373,7 +373,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IngridientsProducts">
-            <EntityTypeMapping TypeName="KursachModel.IngridientsProducts">
+            <EntityTypeMapping TypeName="KursachModel.IngridientsProduct">
               <MappingFragment StoreEntitySet="IngridientsProducts">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="IngredientId" ColumnName="ingredient_id" />
@@ -382,7 +382,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="KursachModel.Orders">
+            <EntityTypeMapping TypeName="KursachModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Discount" ColumnName="discount" />
@@ -392,7 +392,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="KursachModel.Products">
+            <EntityTypeMapping TypeName="KursachModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="p_name" />
@@ -403,7 +403,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductsOrders">
-            <EntityTypeMapping TypeName="KursachModel.ProductsOrders">
+            <EntityTypeMapping TypeName="KursachModel.ProductsOrder">
               <MappingFragment StoreEntitySet="ProductsOrders">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="ProductId" ColumnName="product_id" />
@@ -412,7 +412,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductsTypes">
-            <EntityTypeMapping TypeName="KursachModel.ProductsTypes">
+            <EntityTypeMapping TypeName="KursachModel.ProductsType">
               <MappingFragment StoreEntitySet="ProductsTypes">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="TypeName" ColumnName="product_type_name" />

@@ -25,12 +25,12 @@ namespace Kursach
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ingredients> Ingredients { get; set; }
-        public virtual DbSet<IngredientsTypes> IngredientsTypes { get; set; }
-        public virtual DbSet<IngridientsProducts> IngridientsProducts { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<ProductsOrders> ProductsOrders { get; set; }
-        public virtual DbSet<ProductsTypes> ProductsTypes { get; set; }
+        public virtual DbSet<Ingredient> Ingredients { get; set; }
+        public virtual DbSet<IngredientType> IngredientsTypes { get; set; }
+        public virtual DbSet<IngridientsProduct> IngridientsProducts { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductsOrder> ProductsOrders { get; set; }
+        public virtual DbSet<ProductsType> ProductsTypes { get; set; }
     }
 }

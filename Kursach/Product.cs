@@ -12,13 +12,13 @@ namespace Kursach
     using System;
     using System.Collections.Generic;
     
-    public partial class Products
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
+        public Product()
         {
-            this.IngridientsProducts = new HashSet<IngridientsProducts>();
-            this.ProductsOrders = new HashSet<ProductsOrders>();
+            this.IngridientsProducts = new HashSet<IngridientsProduct>();
+            this.ProductsOrders = new HashSet<ProductsOrder>();
         }
     
         public int Id { get; set; }
@@ -28,9 +28,9 @@ namespace Kursach
         public string ProductImagePath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IngridientsProducts> IngridientsProducts { get; set; }
-        public virtual ProductsTypes ProductsTypes { get; set; }
+        public virtual ICollection<IngridientsProduct> IngridientsProducts { get; set; }
+        public virtual ProductsType ProductsTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsOrders> ProductsOrders { get; set; }
+        public virtual ICollection<ProductsOrder> ProductsOrders { get; set; }
     }
 }
