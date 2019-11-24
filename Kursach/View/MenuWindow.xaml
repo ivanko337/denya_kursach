@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursach.View"
+        xmlns:viewModelNamespace="clr-namespace:Kursach.ViewModel"
         mc:Ignorable="d"
         Title="MenuWindow" MaxHeight="650" MaxWidth="5000" Width="1000">
+    <Window.DataContext>
+        <viewModelNamespace:MenuWindowViewModel x:Name="viewModel"></viewModelNamespace:MenuWindowViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -41,41 +45,43 @@
                 <Button x:Name="resetSeatch" Content="Сбросить поиск" Margin="3" />
             </StackPanel>
         </Border>
-        <ListView Grid.Row="1" Margin="5">
-            <GridView>
-                <GridViewColumn Header="Фото товара">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding ImagePath}"/>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="Ингредиенты">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Label FontSize="12" Content="{Binding ProductName}" />
-                                <ItemsControl ItemsSource="{Binding ProductComposition}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Label Content="{Binding}" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="Цена">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding ProductPrice}" HorizontalContentAlignment="Stretch" />
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-            </GridView>
+        <ListView Grid.Row="1" Margin="5" ItemsSource="{Binding ProductsCollection}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Фото товара" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImagePath}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Название" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Label FontSize="12" Content="{Binding ProductName}" />
+                                    <ItemsControl ItemsSource="{Binding ProductComposition}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Label Content="{Binding}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Цена" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ProductPrice}" HorizontalContentAlignment="Stretch" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>

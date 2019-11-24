@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KursachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="i_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="i_group" Type="int" Nullable="false" />
+          <Property Name="i_weight" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientsTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ingredient_type_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngridientsProducts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ingredient_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="discount" Type="int" Nullable="false" />
+          <Property Name="isCompleted" Type="bit" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="p_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="product_type" Type="int" Nullable="false" />
+          <Property Name="product_image_path" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductsOrders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductsTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_type_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Ingredien__i_gro__3B75D760">
+          <End Role="IngredientsTypes" Type="Self.IngredientsTypes" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientsTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="i_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingridien__ingre__44FF419A">
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
+          <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="IngridientsProducts">
+              <PropertyRef Name="ingredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingridien__produ__45F365D3">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="IngridientsProducts">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__produc__3E52440B">
+          <End Role="ProductsTypes" Type="Self.ProductsTypes" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="product_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductsO__order__49C3F6B7">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductsOrders">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductsO__produ__48CFD27E">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductsOrders">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KursachModelStoreContainer">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngredientsTypes" EntityType="Self.IngredientsTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngridientsProducts" EntityType="Self.IngridientsProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsOrders" EntityType="Self.ProductsOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsTypes" EntityType="Self.ProductsTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Ingredien__i_gro__3B75D760" Association="Self.FK__Ingredien__i_gro__3B75D760">
+            <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingridien__ingre__44FF419A" Association="Self.FK__Ingridien__ingre__44FF419A">
+            <End Role="Ingredients" EntitySet="Ingredients" />
+            <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingridien__produ__45F365D3" Association="Self.FK__Ingridien__produ__45F365D3">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__produc__3E52440B" Association="Self.FK__Products__produc__3E52440B">
+            <End Role="ProductsTypes" EntitySet="ProductsTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductsO__order__49C3F6B7" Association="Self.FK__ProductsO__order__49C3F6B7">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="ProductsOrders" EntitySet="ProductsOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductsO__produ__48CFD27E" Association="Self.FK__ProductsO__produ__48CFD27E">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsOrders" EntitySet="ProductsOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Group" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="IngredientsTypes" Relationship="Self.FK__Ingredien__i_gro__3B75D760" FromRole="Ingredients" ToRole="IngredientsTypes" />
+          <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__ingre__44FF419A" FromRole="Ingredients" ToRole="IngridientsProducts" />
+        </EntityType>
+        <EntityType Name="IngredientsTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IngredientTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingredien__i_gro__3B75D760" FromRole="IngredientsTypes" ToRole="Ingredients" />
+        </EntityType>
+        <EntityType Name="IngridientsProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingridien__ingre__44FF419A" FromRole="IngridientsProducts" ToRole="Ingredients" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Ingridien__produ__45F365D3" FromRole="IngridientsProducts" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discount" Type="Int32" Nullable="false" />
+          <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProductsOrders" Relationship="Self.FK__ProductsO__order__49C3F6B7" FromRole="Orders" ToRole="ProductsOrders" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ProductType" Type="Int32" Nullable="false" />
+          <Property Name="ProductImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__produ__45F365D3" FromRole="Products" ToRole="IngridientsProducts" />
+          <NavigationProperty Name="ProductsTypes" Relationship="Self.FK__Products__produc__3E52440B" FromRole="Products" ToRole="ProductsTypes" />
+          <NavigationProperty Name="ProductsOrders" Relationship="Self.FK__ProductsO__produ__48CFD27E" FromRole="Products" ToRole="ProductsOrders" />
+        </EntityType>
+        <EntityType Name="ProductsOrders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__ProductsO__order__49C3F6B7" FromRole="ProductsOrders" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__ProductsO__produ__48CFD27E" FromRole="ProductsOrders" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductsTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__produc__3E52440B" FromRole="ProductsTypes" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK__Ingredien__i_gro__3B75D760">
+          <End Role="IngredientsTypes" Type="Self.IngredientsTypes" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientsTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingridien__ingre__44FF419A">
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
+          <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngridientsProducts">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingridien__produ__45F365D3">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngridientsProducts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductsO__order__49C3F6B7">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOrders">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__produc__3E52440B">
+          <End Role="ProductsTypes" Type="Self.ProductsTypes" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductsO__produ__48CFD27E">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOrders">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KursachDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" />
+          <EntitySet Name="IngredientsTypes" EntityType="Self.IngredientsTypes" />
+          <EntitySet Name="IngridientsProducts" EntityType="Self.IngridientsProducts" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductsOrders" EntityType="Self.ProductsOrders" />
+          <EntitySet Name="ProductsTypes" EntityType="Self.ProductsTypes" />
+          <AssociationSet Name="FK__Ingredien__i_gro__3B75D760" Association="Self.FK__Ingredien__i_gro__3B75D760">
+            <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingridien__ingre__44FF419A" Association="Self.FK__Ingridien__ingre__44FF419A">
+            <End Role="Ingredients" EntitySet="Ingredients" />
+            <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingridien__produ__45F365D3" Association="Self.FK__Ingridien__produ__45F365D3">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductsO__order__49C3F6B7" Association="Self.FK__ProductsO__order__49C3F6B7">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="ProductsOrders" EntitySet="ProductsOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__produc__3E52440B" Association="Self.FK__Products__produc__3E52440B">
+            <End Role="ProductsTypes" EntitySet="ProductsTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductsO__produ__48CFD27E" Association="Self.FK__ProductsO__produ__48CFD27E">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsOrders" EntitySet="ProductsOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KursachModelStoreContainer" CdmEntityContainer="KursachDBContext">
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="KursachModel.Ingredients">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="i_name" />
+                <ScalarProperty Name="Group" ColumnName="i_group" />
+                <ScalarProperty Name="Weight" ColumnName="i_weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientsTypes">
+            <EntityTypeMapping TypeName="KursachModel.IngredientsTypes">
+              <MappingFragment StoreEntitySet="IngredientsTypes">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="IngredientTypeName" ColumnName="ingredient_type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngridientsProducts">
+            <EntityTypeMapping TypeName="KursachModel.IngridientsProducts">
+              <MappingFragment StoreEntitySet="IngridientsProducts">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="IngredientId" ColumnName="ingredient_id" />
+                <ScalarProperty Name="ProductId" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="KursachModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Discount" ColumnName="discount" />
+                <ScalarProperty Name="IsCompleted" ColumnName="isCompleted" />
+                <ScalarProperty Name="OrderDate" ColumnName="order_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="KursachModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="p_name" />
+                <ScalarProperty Name="Price" ColumnName="p_price" />
+                <ScalarProperty Name="ProductType" ColumnName="product_type" />
+                <ScalarProperty Name="ProductImagePath" ColumnName="product_image_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsOrders">
+            <EntityTypeMapping TypeName="KursachModel.ProductsOrders">
+              <MappingFragment StoreEntitySet="ProductsOrders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ProductId" ColumnName="product_id" />
+                <ScalarProperty Name="OrderId" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsTypes">
+            <EntityTypeMapping TypeName="KursachModel.ProductsTypes">
+              <MappingFragment StoreEntitySet="ProductsTypes">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="TypeName" ColumnName="product_type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
