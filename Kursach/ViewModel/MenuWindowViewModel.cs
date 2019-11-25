@@ -15,11 +15,17 @@ namespace Kursach.ViewModel
         {
             get
             {
-                var dbContext = new KursachDBContext();
+                KursachDBContext dbContext = new KursachDBContext();
 
-                IQueryable<Product> query = dbContext.Products;
-
+                IQueryable<Product> query = dbContext.Products.Include("IngridientsProducts").Include("IngridientsProducts.Ingredients");
                 List<Product> products = query.ToList();
+
+                //var products_ = from p in dbContext.Products
+                //                join ingProd in dbContext.IngridientsProducts on p.Id equals ingProd.ProductId
+                //                select new
+                //                {
+                //                    Product = p
+                //                };
 
                 return products;
             }

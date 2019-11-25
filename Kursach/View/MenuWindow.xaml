@@ -60,10 +60,17 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Label FontSize="12" Content="{Binding Name}" />
-                                    <ListView ItemsSource="{Binding IngridientsProducts.Ingredients}">
+                                    <ListView ItemsSource="{Binding IngridientsProducts.Ingredients}" Height="200">
                                         <ListView.View>
                                             <GridView>
-                                                
+                                                <!--<GridViewColumn Header="Ингредиенты">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label Content="{Binding Name}" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>-->
+                                                <GridViewColumn Header="Ингредиенты" DisplayMemberBinding="{Binding Name}" />
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
