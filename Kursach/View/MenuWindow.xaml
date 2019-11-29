@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MenuWindow" MaxHeight="650" MaxWidth="5000" Width="1000">
     <Window.DataContext>
-        <viewModelNamespace:MenuWindowViewModel x:Name="viewModel"></viewModelNamespace:MenuWindowViewModel>
+        <viewModelNamespace:MenuWindowViewModel x:Name="viewModel" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>

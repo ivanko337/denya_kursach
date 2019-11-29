@@ -97,12 +97,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\DatabaseObjects\Ingredient.cs" />
-    <Compile Include="Infrastructure\DatabaseObjects\IngredientType.cs" />
-    <Compile Include="Infrastructure\DatabaseObjects\Order.cs" />
-    <Compile Include="Infrastructure\DatabaseObjects\Product.cs" />
-    <Compile Include="Infrastructure\DatabaseObjects\ProductType.cs" />
-    <Compile Include="Infrastructure\IngredientsCollection.cs" />
     <Compile Include="Ingredient.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -112,7 +106,6 @@
     <Compile Include="IngridientsProduct.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Database.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -126,9 +119,13 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MenuWindowViewModel.cs" />
+    <Compile Include="ViewModel\OrderWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrdersWindow.xaml.cs">
+      <DependentUpon>OrdersWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +140,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrdersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

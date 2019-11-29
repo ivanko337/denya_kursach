@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KursachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KursachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ingredients">
           <Key>
             <PropertyRef Name="id" />
@@ -36,6 +36,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="discount" Type="int" Nullable="false" />
           <Property Name="isCompleted" Type="bit" Nullable="false" />
+          <Property Name="isGiven" Type="bit" Nullable="false" />
           <Property Name="order_date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
@@ -63,7 +64,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_type_name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Ingredien__i_gro__3B75D760">
+        <Association Name="FK__Ingredien__i_gro__73BA3083">
           <End Role="IngredientsTypes" Type="Self.IngredientsTypes" Multiplicity="1" />
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,7 +76,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__ingre__44FF419A">
+        <Association Name="FK__Ingridien__ingre__7E37BEF6">
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__produ__45F365D3">
+        <Association Name="FK__Ingridien__produ__7F2BE32F">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__produc__3E52440B">
+        <Association Name="FK__Products__produc__76969D2E">
           <End Role="ProductsTypes" Type="Self.ProductsTypes" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductsO__order__49C3F6B7">
+        <Association Name="FK__ProductsO__order__02FC7413">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -123,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductsO__produ__48CFD27E">
+        <Association Name="FK__ProductsO__produ__02084FDA">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -143,33 +144,32 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsOrders" EntityType="Self.ProductsOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsTypes" EntityType="Self.ProductsTypes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Ingredien__i_gro__3B75D760" Association="Self.FK__Ingredien__i_gro__3B75D760">
+          <AssociationSet Name="FK__Ingredien__i_gro__73BA3083" Association="Self.FK__Ingredien__i_gro__73BA3083">
             <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__ingre__44FF419A" Association="Self.FK__Ingridien__ingre__44FF419A">
+          <AssociationSet Name="FK__Ingridien__ingre__7E37BEF6" Association="Self.FK__Ingridien__ingre__7E37BEF6">
             <End Role="Ingredients" EntitySet="Ingredients" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__produ__45F365D3" Association="Self.FK__Ingridien__produ__45F365D3">
+          <AssociationSet Name="FK__Ingridien__produ__7F2BE32F" Association="Self.FK__Ingridien__produ__7F2BE32F">
             <End Role="Products" EntitySet="Products" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__produc__3E52440B" Association="Self.FK__Products__produc__3E52440B">
+          <AssociationSet Name="FK__Products__produc__76969D2E" Association="Self.FK__Products__produc__76969D2E">
             <End Role="ProductsTypes" EntitySet="ProductsTypes" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductsO__order__49C3F6B7" Association="Self.FK__ProductsO__order__49C3F6B7">
+          <AssociationSet Name="FK__ProductsO__order__02FC7413" Association="Self.FK__ProductsO__order__02FC7413">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="ProductsOrders" EntitySet="ProductsOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductsO__produ__48CFD27E" Association="Self.FK__ProductsO__produ__48CFD27E">
+          <AssociationSet Name="FK__ProductsO__produ__02084FDA" Association="Self.FK__ProductsO__produ__02084FDA">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductsOrders" EntitySet="ProductsOrders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -211,6 +211,7 @@
           <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ProductsOrders" Relationship="Self.FK__ProductsO__order__49C3F6B7" FromRole="Orders" ToRole="ProductsOrders" />
+          <Property Name="IsGiven" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -384,6 +385,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="KursachModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IsGiven" ColumnName="isGiven" />
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Discount" ColumnName="discount" />
                 <ScalarProperty Name="IsCompleted" ColumnName="isCompleted" />

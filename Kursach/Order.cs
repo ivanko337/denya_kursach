@@ -24,6 +24,7 @@ namespace Kursach
         public int Discount { get; set; }
         public bool IsCompleted { get; set; }
         public System.DateTime OrderDate { get; set; }
+        public bool IsGiven { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductsOrder> ProductsOrders { get; set; }

@@ -41,6 +41,7 @@ CREATE TABLE Orders(
 	id INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	discount INT NOT NULL DEFAULT 0,
 	isCompleted BIT NOT NULL DEFAULT 0,
+	isGiven BIT NOT NULL DEFAULT 0, -- отдали ли заказ покупателю
 	order_date DATETIME NOT NULL
 );
 
@@ -94,17 +95,3 @@ INSERT INTO Orders(order_date) VALUES (GETDATE());
 
 INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 1);
 INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 2);
-GO
-
-SELECT po.order_id AS OrderID, p.p_name AS ProductName FROM ProductsOrders po
-		JOIN Products p ON  (po.product_id = p.id);
-
-SELECT p.p_name, i.i_name, i.i_weight FROM IngridientsProducts t
-		JOIN Products p ON (t.product_id = p.id)
-		JOIN Ingredients i ON (t.ingredient_id = i.id);
-
-SELECT Products.p_name, Products.p_price, ProductsTypes.product_type_name FROM IngridientsProducts t
-		JOIN Products ON (t.product_id = Products.id)
-		JOIN Ingredients ON (t.ingredient_id = Ingredients.id)
-		JOIN ProductsTypes ON (Products.product_type = ProductsTypes.id)
-		WHERE Ingredients.i_group = 3;
