@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kursach.ViewModel
 {
-    public class OrderWindowViewModel
+    public class OrderWindowViewModel : ViewModelBase
     {
         public List<Order> CompletedOrders
         {

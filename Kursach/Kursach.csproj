@@ -97,6 +97,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Commands\CompleteOrderCommand.cs" />
+    <Compile Include="Infrastructure\Commands\NotCompleteOrderCommand.cs" />
     <Compile Include="Ingredient.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -121,11 +123,15 @@
     <Compile Include="ViewModel\MenuWindowViewModel.cs" />
     <Compile Include="ViewModel\OrderWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\WorkerWindowViewModel.cs" />
     <Compile Include="View\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OrdersWindow.xaml.cs">
       <DependentUpon>OrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkerWindow.xaml.cs">
+      <DependentUpon>WorkerWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

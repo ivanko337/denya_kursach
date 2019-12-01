@@ -1,0 +1,54 @@
+﻿<Window x:Class="Kursach.View.WorkerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursach.View"
+        xmlns:viewModel="clr-namespace:Kursach.ViewModel"
+        mc:Ignorable="d"
+        Title="WorkerWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModel:WorkerWindowViewModel x:Name="viewModel" />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Не готовы" HorizontalAlignment="Center" FontSize="25" Grid.Row="0" Grid.Column="0" />
+        <ItemsControl ItemsSource="{Binding NotCompletedOrders}" Margin="5" Grid.Row="1" Grid.Column="0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Id}" Command="{Binding Command}" CommandParameter="{Binding Id}" Height="30" Width="30" Margin="3" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" />
+
+        <Label Content="Готовы" HorizontalAlignment="Center" FontSize="25" Grid.Row="0" Grid.Column="2" />
+        <ItemsControl ItemsSource="{Binding CompletedOrders}" Margin="5" Grid.Row="1" Grid.Column="2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Id}" Command="{Binding Command}" CommandParameter="{Binding Id}" Height="30" Width="30" Margin="3" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>
