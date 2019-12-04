@@ -12,46 +12,15 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1">
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Border BorderBrush="Black" BorderThickness="1" Margin="3">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Категория:" Margin="3" />
-                        <ComboBox x:Name="categoryComboBox" Margin="3" Width="100" Height="25" />
-                    </StackPanel>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Margin="3">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Цена:" Margin="3" />
-                        <Label Content="От: " Margin="1 3 3 3" />
-                        <TextBox x:Name="priceFromTextBox" Width="55" Height="20" Margin="3" />
-                        <Label Content="До: " Margin="1 3 3 3" />
-                        <TextBox x:Name="priceToTextBox" Width="55" Height="20" Margin="3" />
-                    </StackPanel>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Margin="3">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Вес:" Margin="3" />
-                        <Label Content="От: " Margin="1 3 3 3" />
-                        <TextBox x:Name="weightFromTextBox" Width="55" Height="20" Margin="3" />
-                        <Label Content="До: " Margin="1 3 3 3" />
-                        <TextBox x:Name="weightToTextBox" Width="55" Height="20" Margin="3" />
-                    </StackPanel>
-                </Border>
-                <Button x:Name="vegetariansButton" Content="Для вегетарианцев" Margin="3" />
-                <Button x:Name="resetSeatch" Content="Сбросить поиск" Margin="3" />
-            </StackPanel>
-        </Border>
-        <ListView Grid.Row="1" Margin="5" ItemsSource="{Binding ProductsCollection}">
+        <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding ProductsCollection}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding ProductImagePath}"/>
+                                <Image MaxHeight="250" Source="{Binding ProductImagePath}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -59,30 +28,14 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Label FontSize="12" Content="{Binding Name}" />
-                                    <ListView ItemsSource="{Binding IngridientsProducts.Ingredients}" Height="200">
+                                    <Label FontSize="19" Content="{Binding Name}" />
+                                    <ListView ItemsSource="{Binding IngridientsProducts}" Height="200">
                                         <ListView.View>
                                             <GridView>
-                                                <!--<GridViewColumn Header="Ингредиенты">
-                                                    <GridViewColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Label Content="{Binding Name}" />
-                                                        </DataTemplate>
-                                                    </GridViewColumn.CellTemplate>
-                                                </GridViewColumn>-->
-                                                <GridViewColumn Header="Ингредиенты" DisplayMemberBinding="{Binding Name}" />
+                                                <GridViewColumn Header="Ингредиенты" DisplayMemberBinding="{Binding Ingredient.Name}" />
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
-                                    <!--<ItemsControl ItemsSource="{Binding IngridientsProducts.Ingredients}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
-                                                <Label Content="{Binding Name}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>-->
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

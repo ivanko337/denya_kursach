@@ -9,15 +9,15 @@ using System.Windows;
 
 namespace Kursach.ViewModel
 {
+    public class OrderView
+    {
+        public int Id { get; set; }
+        public ICommand Command { get; set; }
+    }
+
     public class WorkerWindowViewModel : ViewModelBase
     {
         private KursachDBContext context;
-
-        public class OrderView
-        {
-            public int Id { get; set; }
-            public ICommand Command { get; set; }
-        }
 
         public List<OrderView> CompletedOrders
         {
@@ -29,12 +29,10 @@ namespace Kursach.ViewModel
                 List<OrderView> views = new List<OrderView>();
                 foreach (var oView in orders)
                 {
-                    if (!oView.IsCompleted && !oView.IsGiven)
+                    if (oView.IsCompleted && !oView.IsGiven)
                     {
-                        continue;
+                        views.Add(new OrderView() { Id = oView.Id, Command = new CompleteOrderCommand(CompletedOrderCommandExecuter) });
                     }
-
-                    views.Add(new OrderView() { Id = oView.Id, Command = new CompleteOrderCommand(CompletedOrderCommandExecuter) });
                 }
 
                 return views;
@@ -51,7 +49,7 @@ namespace Kursach.ViewModel
                 List<OrderView> views = new List<OrderView>();
                 foreach (var oView in orders)
                 {
-                    if (oView.IsCompleted && !oView.IsGiven)
+                    if (oView.IsCompleted)
                     {
                         continue;
                     }
@@ -93,6 +91,7 @@ namespace Kursach.ViewModel
 
             OnProperyChanged("NotCompletedOrders");
             OnProperyChanged("CompletedOrders");
+            OrderWindowViewModel.Instance.UpdateOrder();
         }
 
         private Order GetOrdersForCompletedCommand(object param)
@@ -120,6 +119,7 @@ namespace Kursach.ViewModel
 
             OnProperyChanged("CompletedOrders");
             OnProperyChanged("NotCompletedOrders");
+            OrderWindowViewModel.Instance.UpdateOrder();
         }
     }
 }

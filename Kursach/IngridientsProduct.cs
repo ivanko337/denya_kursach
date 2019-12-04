@@ -18,7 +18,7 @@ namespace Kursach
         public int IngredientId { get; set; }
         public int ProductId { get; set; }
     
-        public virtual Ingredient Ingredients { get; set; }
-        public virtual Product Products { get; set; }
+        public virtual Ingredient Ingredient { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

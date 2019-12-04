@@ -199,8 +199,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IngredientId" Type="Int32" Nullable="false" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingridien__ingre__44FF419A" FromRole="IngridientsProducts" ToRole="Ingredients" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Ingridien__produ__45F365D3" FromRole="IngridientsProducts" ToRole="Products" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK__Ingridien__ingre__44FF419A" FromRole="IngridientsProducts" ToRole="Ingredients" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Ingridien__produ__45F365D3" FromRole="IngridientsProducts" ToRole="Products" />
         </EntityType>
         <EntityType Name="Order">
           <Key>

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Kursach.View;
 
 namespace Kursach
 {
@@ -17,7 +18,18 @@ namespace Kursach
         {
             base.OnStartup(e);
 
+            WorkerWindow workerWindow = new WorkerWindow();
+            OrdersWindow ordersWindow = new OrdersWindow();
 
+            try
+            {
+                workerWindow.Show();
+                ordersWindow.Show();
+            }
+            catch
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }
