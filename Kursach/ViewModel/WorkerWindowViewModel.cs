@@ -1,55 +1,125 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Kursach.Infrastructure.Commands;
+using System.Windows;
 
 namespace Kursach.ViewModel
 {
     public class WorkerWindowViewModel : ViewModelBase
     {
-        public object CompletedOrders
+        private KursachDBContext context;
+
+        public class OrderView
+        {
+            public int Id { get; set; }
+            public ICommand Command { get; set; }
+        }
+
+        public List<OrderView> CompletedOrders
         {
             get
             {
                 var dbContext = new KursachDBContext();
 
-                var query = from o in dbContext.Orders
-                            where o.IsCompleted
-                            where !o.IsGiven
-                            select new
-                            {
-                                Id = o.Id,
-                                Command = new CompleteOrderCommand()
-                            };
+                var orders = dbContext.Orders;
+                List<OrderView> views = new List<OrderView>();
+                foreach (var oView in orders)
+                {
+                    if (!oView.IsCompleted && !oView.IsGiven)
+                    {
+                        continue;
+                    }
 
-                return query.ToList();
+                    views.Add(new OrderView() { Id = oView.Id, Command = new CompleteOrderCommand(CompletedOrderCommandExecuter) });
+                }
+
+                return views;
             }
         }
 
-        public object NotCompletedOrders
+        public List<OrderView> NotCompletedOrders
         {
             get
             {
                 var dbContext = new KursachDBContext();
 
-                var query = from o in dbContext.Orders
-                            where !o.IsCompleted
-                            where !o.IsGiven
-                            select new
-                            {
-                                Id = o.Id,
-                                Command = new NotCompleteOrderCommand()
-                            };
+                var orders = dbContext.Orders;
+                List<OrderView> views = new List<OrderView>();
+                foreach (var oView in orders)
+                {
+                    if (oView.IsCompleted && !oView.IsGiven)
+                    {
+                        continue;
+                    }
 
-                return query.ToList();
+                    views.Add(new OrderView() { Id = oView.Id, Command = new NotCompleteOrderCommand(NotCompetedOrderCommandExecuter) });
+                }
+
+                return views;
             }
         }
 
-        //public ICommand CompleteOrderCommand { get; } = new CompleteOrderCommand();
-        //public ICommand NotCompleteOrderCommand { get; } = new NotCompleteOrderCommand();
+        public WorkerWindowViewModel()
+        {
+            context = new KursachDBContext();
+        }
+
+        private Order GetOrdersForNotCompletedCommand(object param)
+        {
+            if (!(param is int))
+            {
+                return null;
+            }
+
+            int id = Convert.ToInt32(param);
+
+            return context.Orders.FirstOrDefault(order => order.Id == id);
+        }
+        private void NotCompetedOrderCommandExecuter(object parameter)
+        {
+            Order order = GetOrdersForNotCompletedCommand(parameter);
+
+            if (order == null)
+            {
+                return;
+            }
+
+            order.IsCompleted = true;
+            context.SaveChanges();
+
+            OnProperyChanged("NotCompletedOrders");
+            OnProperyChanged("CompletedOrders");
+        }
+
+        private Order GetOrdersForCompletedCommand(object param)
+        {
+            if (!(param is int))
+            {
+                return null;
+            }
+
+            int id = Convert.ToInt32(param);
+
+            return context.Orders.FirstOrDefault(order => order.Id == id);
+        }
+        private void CompletedOrderCommandExecuter(object parameter)
+        {
+            Order order = GetOrdersForCompletedCommand(parameter);
+
+            if (order == null)
+            {
+                return;
+            }
+
+            order.IsGiven = true;
+            context.SaveChanges();
+
+            OnProperyChanged("CompletedOrders");
+            OnProperyChanged("NotCompletedOrders");
+        }
     }
 }

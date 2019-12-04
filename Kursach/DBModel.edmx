@@ -64,7 +64,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_type_name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Ingredien__i_gro__73BA3083">
+        <Association Name="FK__Ingredien__i_gro__3B75D760">
           <End Role="IngredientsTypes" Type="Self.IngredientsTypes" Multiplicity="1" />
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -76,7 +76,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__ingre__7E37BEF6">
+        <Association Name="FK__Ingridien__ingre__45F365D3">
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__produ__7F2BE32F">
+        <Association Name="FK__Ingridien__produ__46E78A0C">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -100,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__produc__76969D2E">
+        <Association Name="FK__Products__produc__3E52440B">
           <End Role="ProductsTypes" Type="Self.ProductsTypes" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -112,7 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductsO__order__02FC7413">
+        <Association Name="FK__ProductsO__order__4AB81AF0">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductsO__produ__02084FDA">
+        <Association Name="FK__ProductsO__produ__49C3F6B7">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ProductsOrders" Type="Self.ProductsOrders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,27 +144,27 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsOrders" EntityType="Self.ProductsOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsTypes" EntityType="Self.ProductsTypes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Ingredien__i_gro__73BA3083" Association="Self.FK__Ingredien__i_gro__73BA3083">
+          <AssociationSet Name="FK__Ingredien__i_gro__3B75D760" Association="Self.FK__Ingredien__i_gro__3B75D760">
             <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__ingre__7E37BEF6" Association="Self.FK__Ingridien__ingre__7E37BEF6">
+          <AssociationSet Name="FK__Ingridien__ingre__45F365D3" Association="Self.FK__Ingridien__ingre__45F365D3">
             <End Role="Ingredients" EntitySet="Ingredients" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__produ__7F2BE32F" Association="Self.FK__Ingridien__produ__7F2BE32F">
+          <AssociationSet Name="FK__Ingridien__produ__46E78A0C" Association="Self.FK__Ingridien__produ__46E78A0C">
             <End Role="Products" EntitySet="Products" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__produc__76969D2E" Association="Self.FK__Products__produc__76969D2E">
+          <AssociationSet Name="FK__Products__produc__3E52440B" Association="Self.FK__Products__produc__3E52440B">
             <End Role="ProductsTypes" EntitySet="ProductsTypes" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductsO__order__02FC7413" Association="Self.FK__ProductsO__order__02FC7413">
+          <AssociationSet Name="FK__ProductsO__order__4AB81AF0" Association="Self.FK__ProductsO__order__4AB81AF0">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="ProductsOrders" EntitySet="ProductsOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductsO__produ__02084FDA" Association="Self.FK__ProductsO__produ__02084FDA">
+          <AssociationSet Name="FK__ProductsO__produ__49C3F6B7" Association="Self.FK__ProductsO__produ__49C3F6B7">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductsOrders" EntitySet="ProductsOrders" />
           </AssociationSet>

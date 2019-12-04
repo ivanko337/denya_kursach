@@ -21,39 +21,37 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Content="Готовятся" Grid.Row="0" Grid.Column="0" FontSize="25" HorizontalAlignment="Center" Margin="3" />
-        <ListView Grid.Row="1" Grid.Column="0" Margin="5 3 5 3" ItemsSource="{Binding NotCompletedOrders}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Id}" Margin="3" 
+        <ItemsControl ItemsSource="{Binding NotCompletedOrders}" Margin="5 3 5 3" Grid.Row="1" Grid.Column="0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Id}" Margin="3" 
                                        VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                       FontSize="12" Background="Red" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                                       FontSize="20" Background="Red" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" />
 
         <Label Content="Готовы" Grid.Row="0" Grid.Column="2" FontSize="25" HorizontalAlignment="Center" Margin="3" />
-        <ListView Grid.Row="1" Grid.Column="2" Margin="5 3 5 3" ItemsSource="{Binding CompletedOrders}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Id}" Margin="3" 
+        <ItemsControl ItemsSource="{Binding CompletedOrders}" Margin="5 3 5 3" Grid.Row="1" Grid.Column="2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Id}" Margin="3" 
                                        VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                       FontSize="12" Background="Green" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                                       FontSize="20" Background="Green" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

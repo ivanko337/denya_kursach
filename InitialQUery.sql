@@ -1,4 +1,10 @@
-﻿USE Kursach;
+﻿USE master;
+GO
+DROP DATABASE IF EXISTS Kursach;
+GO
+CREATE DATABASE Kursach;
+GO
+USE Kursach;
 GO
 
 DROP TABLE IF EXISTS ProductsOrders;
@@ -91,6 +97,9 @@ INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 3);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 4);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 5);
 
+INSERT INTO Orders(order_date) VALUES (GETDATE());
+INSERT INTO Orders(order_date) VALUES (GETDATE());
+INSERT INTO Orders(order_date) VALUES (GETDATE());
 INSERT INTO Orders(order_date) VALUES (GETDATE());
 
 INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 1);

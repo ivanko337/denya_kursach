@@ -12,14 +12,16 @@ namespace Kursach.ViewModel
         {
             get
             {
-                var dbContext = new KursachDBContext();
+                using (var dbContext = new KursachDBContext())
+                {
 
-                var query = from o in dbContext.Orders
-                            where o.IsCompleted
-                            where !o.IsGiven
-                            select o;
+                    var query = from o in dbContext.Orders
+                                where o.IsCompleted
+                                where !o.IsGiven
+                                select o;
 
-                return query.ToList();
+                    return query.ToList();
+                }
             }
         }
 
@@ -27,14 +29,16 @@ namespace Kursach.ViewModel
         {
             get
             {
-                var dbContext = new KursachDBContext();
+                using (var dbContext = new KursachDBContext())
+                {
 
-                var query = from o in dbContext.Orders
-                            where !o.IsCompleted
-                            where !o.IsGiven
-                            select o;
+                    var query = from o in dbContext.Orders
+                                where !o.IsCompleted
+                                where !o.IsGiven
+                                select o;
 
-                return query.ToList();
+                    return query.ToList();
+                }
             }
         }
     }
