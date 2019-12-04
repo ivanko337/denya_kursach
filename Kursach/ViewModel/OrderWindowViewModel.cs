@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Kursach.ViewModel
 {
@@ -54,12 +50,6 @@ namespace Kursach.ViewModel
         public OrderWindowViewModel()
         {
             Instance = this;
-            //new Thread(() => 
-            //{
-            //    OnProperyChanged("CompletedOrders");
-            //    OnProperyChanged("NotCompletedOrders");
-            //    Thread.Sleep(1000);
-            //}).Start();
         }
     }
 }

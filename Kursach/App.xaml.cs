@@ -20,11 +20,15 @@ namespace Kursach
 
             WorkerWindow workerWindow = new WorkerWindow();
             OrdersWindow ordersWindow = new OrdersWindow();
+            MenuWindow menuWindow = new MenuWindow();
+            CreateOrderWindow createOrderWindow = new CreateOrderWindow();
 
             try
             {
                 workerWindow.Show();
                 ordersWindow.Show();
+                menuWindow.Show();
+                createOrderWindow.Show();
             }
             catch
             {
