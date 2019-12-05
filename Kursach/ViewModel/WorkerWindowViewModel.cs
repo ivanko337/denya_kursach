@@ -18,6 +18,7 @@ namespace Kursach.ViewModel
     public class WorkerWindowViewModel : ViewModelBase
     {
         private KursachDBContext context;
+        public static WorkerWindowViewModel Instance;
 
         public List<OrderView> CompletedOrders
         {
@@ -64,6 +65,13 @@ namespace Kursach.ViewModel
         public WorkerWindowViewModel()
         {
             context = new KursachDBContext();
+            Instance = this;
+        }
+
+        public void UpdateView()
+        {
+            OnProperyChanged("NotCompletedOrders");
+            OnProperyChanged("CompletedOrders");
         }
 
         private Order GetOrdersForNotCompletedCommand(object param)

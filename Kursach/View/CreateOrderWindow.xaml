@@ -16,7 +16,11 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ItemsControl ItemsSource="{Binding AllProducts}" Grid.Column="0" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding AllProducts}" Grid.Column="0" Grid.Row="0" Margin="5">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -26,20 +30,28 @@
                 <DataTemplate>
                     <Button Background="White" Command="{Binding Command}" CommandParameter="{Binding Id}">
                         <StackPanel Margin="5" Orientation="Vertical">
-                            <Image Source="{Binding ImagePath}" Width="300" Height="300" Margin="5" />
+                            <Image Source="{Binding ImagePath}" Width="100" Height="100" Margin="5" />
                             <Label FontSize="17" Content="{Binding Name}" />
                         </StackPanel>
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Button Grid.Column="0" Grid.Row="1" Content="Создать заказ" Margin="5" FontSize="20" />
 
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
 
-        <ListView Grid.Row="0" Grid.Column="2" ItemsSource="{Binding OrderProducts}">
+        <ListView Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" ItemsSource="{Binding OrderProducts}" Margin="5" Width="250">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Заказанные блюда" DisplayMemberBinding="{Binding Name}" />
+                    <!--<GridViewColumn Header="Заказанные блюда" DisplayMemberBinding="{Binding Name}" Width="250" />-->
+                    <GridViewColumn Header="Заказанные блюда" Width="250">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}" Margin="3" FontSize="12" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
