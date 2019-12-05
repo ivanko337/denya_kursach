@@ -37,18 +37,17 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Grid.Column="0" Grid.Row="1" Content="Создать заказ" Margin="5" FontSize="20" />
+        <Button Grid.Column="0" Grid.Row="1" Content="Создать заказ" Margin="5" FontSize="20" Command="{Binding CreateOrderCommand}" />
 
         <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
 
         <ListView Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" ItemsSource="{Binding OrderProducts}" Margin="5" Width="250">
             <ListView.View>
                 <GridView>
-                    <!--<GridViewColumn Header="Заказанные блюда" DisplayMemberBinding="{Binding Name}" Width="250" />-->
                     <GridViewColumn Header="Заказанные блюда" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Content="{Binding Name}" Margin="3" FontSize="12" />
+                                <Label Content="{Binding Name}" Margin="1" FontSize="17" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

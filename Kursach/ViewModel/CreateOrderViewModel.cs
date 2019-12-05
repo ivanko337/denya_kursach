@@ -51,11 +51,16 @@ namespace Kursach.ViewModel
             {
                 if (createOrderCommand == null)
                 {
-                    createOrderCommand = new BaseCommand(CreateOrder, null);
+                    createOrderCommand = new BaseCommand(CreateOrder, CanCreateOrder);
                 }
 
                 return createOrderCommand;
             }
+        }
+
+        private bool CanCreateOrder(object parameter)
+        {
+            return OrderProducts.Count != 0;
         }
 
         private double Cost
@@ -82,7 +87,8 @@ namespace Kursach.ViewModel
         {
             using (var context = new KursachDBContext())
             {
-                Order newOrder = context.Orders.Create();
+                Order newOrder = context.Orders.Last();
+
                 newOrder.OrderDate = DateTime.Now;
                 if (Cost > 200)
                 {
