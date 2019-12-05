@@ -4,9 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursach.View"
+        xmlns:viewModelNamespace="clr-namespace:Kursach.ViewModel"
         mc:Ignorable="d"
-        Title="CashRepairWindow" Height="450" Width="800">
+        Title="CashRepairWindow" Height="450" Width="250">
+    <Window.DataContext>
+        <viewModelNamespace:CashRepairWindowViewModel x:Name="viewModel" />
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding Products}" Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Блюда" Width="235" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Grid.Row="1" FontSize="20" Margin="5" Content="{Binding Cost}" />
     </Grid>
 </Window>

@@ -1,10 +1,12 @@
 ﻿using Kursach.Infrastructure.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Kursach.View;
 
 namespace Kursach.ViewModel
 {
@@ -18,7 +20,7 @@ namespace Kursach.ViewModel
 
     public class CreateOrderViewModel : ViewModelBase
     {
-        public List<Product> OrderProducts { get; set; }
+        public ObservableCollection<Product> OrderProducts { get; set; }
 
         public List<ViewProduct> AllProducts
         {
@@ -62,7 +64,10 @@ namespace Kursach.ViewModel
             {
                 decimal res = 0;
 
-                OrderProducts.ForEach(p => res += p.Price);
+                foreach (Product product in OrderProducts)
+                {
+                    res += product.Price;
+                }
 
                 return Convert.ToDouble(res);
             }
@@ -70,7 +75,7 @@ namespace Kursach.ViewModel
 
         public CreateOrderViewModel()
         {
-            OrderProducts = new List<Product>();
+            OrderProducts = new ObservableCollection<Product>();
         }
 
         public void CreateOrder(object parameter)
@@ -97,6 +102,18 @@ namespace Kursach.ViewModel
 
                 WorkerWindowViewModel.Instance.UpdateView();
                 OrderWindowViewModel.Instance.UpdateOrder();
+
+                CashRepairWindow wnd = new CashRepairWindow();
+                try
+                {
+                    wnd.ShowDialog();
+                }
+                catch
+                { }
+                finally
+                {
+                    OrderProducts = new ObservableCollection<Product>();
+                }
             }
         }
 
