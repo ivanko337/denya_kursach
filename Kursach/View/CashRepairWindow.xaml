@@ -18,10 +18,16 @@
         <ListView Grid.Row="0" ItemsSource="{Binding Products}" Margin="5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Блюда" Width="235" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Блюда" Width="230">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}" Margin="3" HorizontalAlignment="Center" FontSize="19" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Grid.Row="1" FontSize="20" Margin="5" Content="{Binding Cost}" />
+        <Label Grid.Row="1" FontSize="20" Margin="5" HorizontalAlignment="Center" Content="{Binding Cost}" />
     </Grid>
 </Window>

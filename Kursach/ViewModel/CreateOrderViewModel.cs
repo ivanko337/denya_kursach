@@ -87,13 +87,28 @@ namespace Kursach.ViewModel
         {
             using (var context = new KursachDBContext())
             {
-                Order newOrder = context.Orders.Last();
+                Order lastOrder = context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
 
-                newOrder.OrderDate = DateTime.Now;
+                int newId = 1;
+                if (lastOrder != null)
+                {
+                    newId = lastOrder.Id + 1;
+                }
+
+                Order newOrder = new Order()
+                {
+                    Id = newId,
+                    Discount = 0,
+                    IsCompleted = false,
+                    IsGiven = false,
+                    OrderDate = DateTime.Now
+                };
+
                 if (Cost > 200)
                 {
                     newOrder.Discount = 5;
                 }
+                context.Orders.Add(newOrder);
 
                 foreach (var product in OrderProducts)
                 {
@@ -119,6 +134,7 @@ namespace Kursach.ViewModel
                 finally
                 {
                     OrderProducts = new ObservableCollection<Product>();
+                    OnProperyChanged(nameof(OrderProducts));
                 }
             }
         }

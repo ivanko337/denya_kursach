@@ -12,32 +12,27 @@ namespace Kursach.ViewModel
             {
                 using (var context = new KursachDBContext())
                 {
-                    Order order = context.Orders.LastOrDefault();
+                    Order order = context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
                     if(order == null)
                     {
                         return new ObservableCollection<Product>();
                     }
 
-                    ObservableCollection<Product> res = new ObservableCollection<Product>(context.Products.Where((product) => order.ProductsOrders.Any(po => po.ProductId == product.Id)));
+                    ObservableCollection<Product> res = new ObservableCollection<Product>();
+                    decimal cost = 0;
+
+                    foreach (ProductsOrder item in context.ProductsOrders.Where(po => po.OrderId == order.Id))
+                    {
+                        res.Add(item.Products);
+                        cost += item.Products.Price;
+                    }
+                    Cost = Convert.ToDouble(cost);
 
                     return res;
                 }
             }
         }
 
-        public double Cost
-        {
-            get
-            {
-                decimal res = 0;
-
-                foreach (Product product in Products)
-                {
-                    res += product.Price;
-                }
-
-                return Convert.ToDouble(res);
-            }
-        }
+        public double Cost { get; private set; }
     }
 }
