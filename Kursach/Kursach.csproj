@@ -100,6 +100,7 @@
     <Compile Include="Infrastructure\Commands\BaseCommand.cs" />
     <Compile Include="Infrastructure\Commands\CompleteOrderCommand.cs" />
     <Compile Include="Infrastructure\Commands\NotCompleteOrderCommand.cs" />
+    <Compile Include="Infrastructure\Converters\MultiValuesConverter.cs" />
     <Compile Include="Ingredient.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -125,6 +126,7 @@
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\MenuWindowViewModel.cs" />
     <Compile Include="ViewModel\OrderWindowViewModel.cs" />
+    <Compile Include="ViewModel\StatisticsWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WorkerWindowViewModel.cs" />
     <Compile Include="View\CashRepairWindow.xaml.cs">
@@ -139,6 +141,9 @@
     <Compile Include="View\OrdersWindow.xaml.cs">
       <DependentUpon>OrdersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StatisticsWindow.xaml.cs">
+      <DependentUpon>StatisticsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WorkerWindow.xaml.cs">
       <DependentUpon>WorkerWindow.xaml</DependentUpon>
     </Compile>
@@ -150,16 +155,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MenuWindow.xaml">
@@ -167,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StatisticsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

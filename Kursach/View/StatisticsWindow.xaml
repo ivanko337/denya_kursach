@@ -1,0 +1,45 @@
+﻿<Window x:Class="Kursach.View.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursach.View"
+        xmlns:viewModel="clr-namespace:Kursach.ViewModel"
+        xmlns:converters="clr-namespace:Kursach.Infrastructure.Converters"
+        mc:Ignorable="d"
+        Title="StatisticsWindow" Height="250" Width="400">
+    <Window.DataContext>
+        <viewModel:StatisticsWindowViewModel x:Name="viewModel" />
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:MultiValuesConverter x:Key="converter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Дата от:" FontSize="15" Grid.Row="1" Grid.Column="0" Margin="3" />
+        <DatePicker Grid.Row="1" Grid.Column="1" Margin="3" x:Name="firstDatePicker" />
+
+        <Label Content="Дата до:" FontSize="15" Grid.Row="1" Grid.Column="2" Margin="3" />
+        <DatePicker Grid.Row="1" Grid.Column="3" Margin="3" x:Name="secondDatePicker" />
+
+        <Button Content="Получить статистику" FontSize="15" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="3" Command="{Binding CreateStatisticsCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource converter}">
+                    <Binding ElementName="firstDatePicker" />
+                    <Binding ElementName="secondDatePicker" />
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+    </Grid>
+</Window>
