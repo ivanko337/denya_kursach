@@ -58,6 +58,33 @@ namespace Kursach.ViewModel
             }
         }
 
+        private BaseCommand getStaticticsCommand;
+        public ICommand GetStaticticsCommand
+        {
+            get
+            {
+                if (getStaticticsCommand == null)
+                {
+                    getStaticticsCommand = new BaseCommand(GetStatistics, null);
+                }
+
+                return getStaticticsCommand;
+            }
+        }
+
+        private void GetStatistics(object parameter)
+        {
+            try
+            {
+                StatisticsWindow wnd = new StatisticsWindow();
+                wnd.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
         private bool CanCreateOrder(object parameter)
         {
             return OrderProducts.Count != 0;
@@ -104,7 +131,7 @@ namespace Kursach.ViewModel
                     OrderDate = DateTime.Now
                 };
 
-                if (Cost > 200)
+                if (Cost > 50 && Cost < 100)
                 {
                     newOrder.Discount = 5;
                 }

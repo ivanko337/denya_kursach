@@ -10,6 +10,7 @@
 namespace Kursach
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     
     public partial class Order
@@ -28,5 +29,23 @@ namespace Kursach
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductsOrder> ProductsOrders { get; set; }
+
+        public double Total
+        {
+            get
+            {
+                decimal cost = 0;
+
+                using (KursachDBContext context = new KursachDBContext())
+                {
+                    foreach (ProductsOrder item in context.ProductsOrders.Where(po => po.OrderId == this.Id))
+                    {
+                        cost += item.Products.Price;
+                    }
+                }
+
+                return Convert.ToDouble(cost);
+            }
+        }
     }
 }

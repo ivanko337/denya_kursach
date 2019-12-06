@@ -36,8 +36,8 @@
         <Button Content="Получить статистику" FontSize="15" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="3" Command="{Binding CreateStatisticsCommand}">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource converter}">
-                    <Binding ElementName="firstDatePicker" />
-                    <Binding ElementName="secondDatePicker" />
+                    <Binding Path="SelectedDate" ElementName="firstDatePicker" />
+                    <Binding Path="SelectedDate" ElementName="secondDatePicker" />
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
