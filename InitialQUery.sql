@@ -76,14 +76,17 @@ INSERT INTO IngredientsTypes(ingredient_type_name) VALUES (N'хлебо-було
 
 INSERT INTO ProductsTypes(product_type_name) VALUES (N'шаурма');
 
-INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (1, N'кебаб куриный', 300);
-INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (6, N'лаваш', 70);
-INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (3, N'огурец', 40);
-INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (5, N'кепчук', 20);
-INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (5, N'мазик', 20);
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (1, N'кебаб куриный', 300); -- 1
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (6, N'лаваш', 70); -- 2
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (3, N'огурец', 40); -- 3
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (5, N'кетчуп', 20); -- 4
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (5, N'майонез', 20); -- 5
 
-INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'шавуха стандарт', 6, 1, N'');
-INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'шавуха нестандарт', 10, 1, N'');
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (1, N'котлета говяжья', 200); -- 6
+INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (6, N'булка', 50); -- 7
+
+INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'Шаурма Стандарт', 6, 1, N'/Kursach;component/Resources/sheurma_standart.jpg');
+INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'Гамбургер Стандарт', 6, 1, N'/Kursach;component/Resources/hamburger_standart.jpg');
 
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 1);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 2);
@@ -91,9 +94,8 @@ INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 3);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 4);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 5);
 
-INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 1);
-INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 2);
-INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 3);
+INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 6);
+INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 7);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 4);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (2, 5);
 
@@ -103,4 +105,3 @@ INSERT INTO Orders(order_date) VALUES (GETDATE());
 INSERT INTO Orders(order_date) VALUES (GETDATE());
 
 INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 1);
-INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 2);
