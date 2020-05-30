@@ -1,5 +1,5 @@
-﻿CREATE DATABASE Kursach;
-GO
+﻿-- CREATE DATABASE Kursach;
+-- GO
 USE Kursach;
 GO
 
@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Ingredients;
 DROP TABLE IF EXISTS ProductsTypes;
 DROP TABLE IF EXISTS IngredientsTypes;
+DROP TABLE IF EXISTS Users;
 GO
 
 CREATE TABLE IngredientsTypes(
@@ -63,6 +64,10 @@ CREATE TABLE ProductsOrders(
 	FOREIGN KEY(order_id) REFERENCES Orders(id)
 );
 
+CREATE TABLE Users(
+	[hash] NVARCHAR(32) PRIMARY KEY
+);
+
 INSERT INTO IngredientsTypes(ingredient_type_name) VALUES (N'мясо');  -- 1
 INSERT INTO IngredientsTypes(ingredient_type_name) VALUES (N'рыба');  -- 2
 INSERT INTO IngredientsTypes(ingredient_type_name) VALUES (N'овощ');  -- 3
@@ -102,3 +107,6 @@ INSERT INTO Orders(order_date) VALUES (GETDATE());
 INSERT INTO Orders(order_date) VALUES (GETDATE());
 
 INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 1);
+
+-- admin:admin
+INSERT INTO Users([hash]) VALUES (N'd2abaa37a7c3db1137d385e1d8c15fd2');
