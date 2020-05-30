@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Windows.Controls;
 
@@ -11,15 +11,15 @@ namespace Kursach.ViewModel
 {
     public class MenuWindowViewModel : ViewModelBase
     {
-        public List<Product> ProductsCollection
+        public ObservableCollection<Product> ProductsCollection
         {
             get
             {
-                KursachDBContext dbContext = new KursachDBContext();
-
-                var query = dbContext.Products;
-
-                return query.ToList();
+                using (var context = new KursachDBContext())
+                {
+                    var query = context.Products.Include("ProductsTypes");
+                    return new ObservableCollection<Product>(query);
+                }
             }
         }
     }

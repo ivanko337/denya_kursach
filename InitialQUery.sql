@@ -1,8 +1,4 @@
-﻿USE master;
-GO
-DROP DATABASE IF EXISTS Kursach;
-GO
-CREATE DATABASE Kursach;
+﻿CREATE DATABASE Kursach;
 GO
 USE Kursach;
 GO
@@ -75,6 +71,7 @@ INSERT INTO IngredientsTypes(ingredient_type_name) VALUES (N'соус');  -- 5
 INSERT INTO IngredientsTypes(ingredient_type_name) VALUES (N'хлебо-булочные изделия'); -- 6
 
 INSERT INTO ProductsTypes(product_type_name) VALUES (N'шаурма');
+INSERT INTO ProductsTypes(product_type_name) VALUES (N'бургер');
 
 INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (1, N'кебаб куриный', 300); -- 1
 INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (6, N'лаваш', 70); -- 2
@@ -86,7 +83,7 @@ INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (1, N'котлета �
 INSERT INTO Ingredients(i_group, i_name, i_weight) VALUES (6, N'булка', 50); -- 7
 
 INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'Шаурма Стандарт', 6, 1, N'/Kursach;component/Resources/sheurma_standart.jpg');
-INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'Гамбургер Стандарт', 6, 1, N'/Kursach;component/Resources/hamburger_standart.jpg');
+INSERT INTO Products(p_name, p_price, product_type, product_image_path) VALUES(N'Гамбургер Стандарт', 6, 2, N'/Kursach;component/Resources/hamburger_standart.jpg');
 
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 1);
 INSERT INTO IngridientsProducts(product_id, ingredient_id) VALUES (1, 2);
