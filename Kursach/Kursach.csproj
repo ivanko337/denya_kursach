@@ -102,10 +102,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BL\MD5.cs" />
     <Compile Include="Infrastructure\Commands\BaseCommand.cs" />
     <Compile Include="Infrastructure\Commands\CompleteOrderCommand.cs" />
     <Compile Include="Infrastructure\Commands\NotCompleteOrderCommand.cs" />
     <Compile Include="Infrastructure\Converters\MultiValuesConverter.cs" />
+    <Compile Include="Infrastructure\Extensions\OrderExtensions.cs" />
     <Compile Include="Ingredient.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -127,6 +129,10 @@
     <Compile Include="ProductsType.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AuthWindowViewModel.cs" />
     <Compile Include="ViewModel\CashRepairWindowViewModel.cs" />
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\MenuWindowViewModel.cs" />
@@ -134,6 +140,9 @@
     <Compile Include="ViewModel\StatisticsWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WorkerWindowViewModel.cs" />
+    <Compile Include="View\AuthWindow.xaml.cs">
+      <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CashRepairWindow.xaml.cs">
       <DependentUpon>CashRepairWindow.xaml</DependentUpon>
     </Compile>
@@ -152,6 +161,10 @@
     <Compile Include="View\WorkerWindow.xaml.cs">
       <DependentUpon>WorkerWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CashRepairWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

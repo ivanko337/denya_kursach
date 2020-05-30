@@ -17,6 +17,15 @@ namespace Kursach
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            AuthWindow authWnd = new AuthWindow();
+
+            if (!authWnd.ShowDialog().Value)
+            {
+                Current.Shutdown();
+            }
+            Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             WorkerWindow workerWindow = new WorkerWindow();
             OrdersWindow ordersWindow = new OrdersWindow();

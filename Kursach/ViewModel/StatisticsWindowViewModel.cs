@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
+using Kursach.Infrastructure.Extensions;
 
 namespace Kursach.ViewModel
 {
@@ -55,7 +56,7 @@ namespace Kursach.ViewModel
             foreach (Order order in orders)
             {
                 oSheet.Cells[i, 1] = order.Id.ToString();
-                oSheet.Cells[i, 2] = order.Total.ToString();
+                oSheet.Cells[i, 2] = order.Total().ToString();
                 oSheet.Cells[i, 3] = order.Discount.ToString();
                 oSheet.Cells[i, 4] = order.OrderDate.ToString();
                 ++i;

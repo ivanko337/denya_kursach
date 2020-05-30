@@ -109,4 +109,4 @@ INSERT INTO Orders(order_date) VALUES (GETDATE());
 INSERT INTO ProductsOrders(order_id, product_id) VALUES(1, 1);
 
 -- admin:admin
-INSERT INTO Users([hash]) VALUES (N'd2abaa37a7c3db1137d385e1d8c15fd2');
+INSERT INTO Users([hash]) VALUES (N'D2ABAA37A7C3DB1137D385E1D8C15FD2');
