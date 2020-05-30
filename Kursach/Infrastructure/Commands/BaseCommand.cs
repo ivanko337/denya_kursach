@@ -14,7 +14,7 @@ namespace Kursach.Infrastructure.Commands
         private Func<object, bool> canExecute;
         private Action<object> execute;
 
-        public BaseCommand(Action<object> execute, Func<object, bool> canExecute)
+        public BaseCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;

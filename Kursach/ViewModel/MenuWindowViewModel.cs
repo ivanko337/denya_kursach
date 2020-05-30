@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Kursach.Infrastructure.Commands;
 
 namespace Kursach.ViewModel
 {
@@ -17,10 +19,32 @@ namespace Kursach.ViewModel
             {
                 using (var context = new KursachDBContext())
                 {
-                    var query = context.Products.Include("ProductsTypes");
-                    return new ObservableCollection<Product>(query);
+                    IEnumerable<Product> productsQuery = null;
+
+                    if (!string.IsNullOrEmpty(SearchExpr) && !string.IsNullOrWhiteSpace(SearchExpr))
+                    {
+                        productsQuery = context.Products.Include("ProductsTypes").Include("IngridientsProducts").Include("IngridientsProducts.Ingredient").Where(p => p.Name.Contains(SearchExpr));
+                    }
+                    else
+                    {
+                        productsQuery = context.Products.Include("ProductsTypes").Include("IngridientsProducts").Include("IngridientsProducts.Ingredient");
+                    }
+
+                    return new ObservableCollection<Product>(productsQuery);
                 }
             }
         }
+
+        public string SearchExpr { get; set; }
+
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new BaseCommand((param) => OnProperyChanged(nameof(ProductsCollection)));
+            }
+        }
+
+
     }
 }
