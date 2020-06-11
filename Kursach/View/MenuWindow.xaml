@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursach.View"
+        xmlns:bl="clr-namespace:Kursach.Infrastructure.BL"
         xmlns:viewModelNamespace="clr-namespace:Kursach.ViewModel"
         mc:Ignorable="d"
         Title="MenuWindow" MaxHeight="650" MaxWidth="5000" Width="1000">
@@ -15,7 +16,9 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding ProductsCollection}">
+        <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding ProductsCollection}"
+                  IsSynchronizedWithCurrentItem="True"
+                  bl:GridViewSort.AutoSort="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара" Width="300">
@@ -25,7 +28,8 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Название" Width="300">
+                    <GridViewColumn Header="Название" Width="300"
+                                    bl:GridViewSort.PropertyName="Name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -41,14 +45,16 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Цена" Width="100">
+                    <GridViewColumn Header="Цена" Width="100"
+                                    bl:GridViewSort.PropertyName="Price">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Label Content="{Binding Price}" HorizontalContentAlignment="Stretch" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Категория" Width="100">
+                    <GridViewColumn Header="Категория" Width="100"
+                                    bl:GridViewSort.PropertyName="ProductsTypes.TypeName">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Label Content="{Binding ProductsTypes.TypeName}" HorizontalContentAlignment="Stretch" />

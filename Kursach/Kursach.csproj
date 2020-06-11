@@ -102,6 +102,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BL\GridViewSort.cs" />
     <Compile Include="Infrastructure\BL\MD5.cs" />
     <Compile Include="Infrastructure\Commands\BaseCommand.cs" />
     <Compile Include="Infrastructure\Commands\CompleteOrderCommand.cs" />
