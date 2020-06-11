@@ -26,7 +26,14 @@ namespace Kursach.ViewModel
                         res.Add(item.Products);
                         cost += item.Products.Price;
                     }
+
                     Cost = Convert.ToDouble(cost);
+
+                    if (order.Discount != 0)
+                    {
+                        Discount = (Cost / 100) * order.Discount;
+                        Cost = Cost - Discount;
+                    }
 
                     return res;
                 }
@@ -34,5 +41,6 @@ namespace Kursach.ViewModel
         }
 
         public double Cost { get; private set; }
+        public double Discount { get; private set; }
     }
 }

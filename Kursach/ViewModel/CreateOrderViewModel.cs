@@ -125,7 +125,7 @@ namespace Kursach.ViewModel
                 Order newOrder = new Order()
                 {
                     Id = newId,
-                    Discount = 0,
+                    Discount = Cost > 30 ? 10 : 0,
                     IsCompleted = false,
                     IsGiven = false,
                     OrderDate = DateTime.Now

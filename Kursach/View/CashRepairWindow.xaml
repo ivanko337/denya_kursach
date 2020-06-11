@@ -28,6 +28,23 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Grid.Row="1" FontSize="20" Margin="5" HorizontalAlignment="Center" Content="{Binding Cost}" />
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Center" Content="Стоимость:" />
+                <Label Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Center" Content="{Binding Cost}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Center" Content="Скидка:" />
+                <Label Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Center" Content="{Binding Discount}" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
