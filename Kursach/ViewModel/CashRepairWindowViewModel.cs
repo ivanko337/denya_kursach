@@ -42,5 +42,12 @@ namespace Kursach.ViewModel
 
         public double Cost { get; private set; }
         public double Discount { get; private set; }
+        public string DiscountString 
+        {
+            get
+            {
+                return Discount.ToString("N2");
+            }
+        }
     }
 }
