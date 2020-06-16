@@ -19,6 +19,11 @@
         <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding ProductsCollection}"
                   IsSynchronizedWithCurrentItem="True"
                   bl:GridViewSort.AutoSort="True">
+            <ListView.ToolTip>
+                <Label FontSize="15">
+                    Для сортировки по различным полям нажмите на название желаемой колонки.
+                </Label>
+            </ListView.ToolTip>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара" Width="300">
@@ -67,7 +72,13 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBox Text="{Binding SearchExpr}" Margin="5" Width="200" FontSize="15" />
-            <Button Content="Найти" Command="{Binding SearchCommand}" FontSize="15" Padding="5" Margin="5" />
+            <Button Content="Найти" Command="{Binding SearchCommand}" FontSize="15" Padding="5" Margin="5">
+                <Button.ToolTip>
+                    <Label FontSize="15">
+                        Нажмите для поиска по названию блюда. Для отображения всего списка блюд очистите поле для ввода текста и нажмите.
+                    </Label>
+                </Button.ToolTip>
+            </Button>
         </StackPanel>
         
     </Grid>

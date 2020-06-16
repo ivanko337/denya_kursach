@@ -34,6 +34,11 @@
         <DatePicker Grid.Row="1" Grid.Column="3" Margin="3" x:Name="secondDatePicker" />
 
         <Button Content="Получить статистику" FontSize="15" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="3" Command="{Binding CreateStatisticsCommand}">
+            <Button.ToolTip>
+                <Label FontSize="15">
+                    Выберите промежуток дат, за который нужно получить статистику и нажмите для её экспорта в Excel.
+                </Label>
+            </Button.ToolTip>
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource converter}">
                     <Binding Path="SelectedDate" ElementName="firstDatePicker" />

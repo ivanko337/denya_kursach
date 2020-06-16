@@ -30,7 +30,13 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding Id}" Command="{Binding Command}" CommandParameter="{Binding Id}" Height="30" Width="30" Margin="3" />
+                    <Button Content="{Binding Id}" Command="{Binding Command}" CommandParameter="{Binding Id}" Height="30" Width="30" Margin="3">
+                        <Button.ToolTip>
+                            <Label FontSize="15">
+                                Нажмите для изменения статуса заказа.
+                            </Label>
+                        </Button.ToolTip>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -46,7 +52,13 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding Id}" Command="{Binding Command}" CommandParameter="{Binding Id}" Height="30" Width="30" Margin="3" />
+                    <Button Content="{Binding Id}" Command="{Binding Command}" CommandParameter="{Binding Id}" Height="30" Width="30" Margin="3">
+                        <Button.ToolTip>
+                            <Label FontSize="15">
+                                Нажмите после выдачи заказа покупателю.
+                            </Label>
+                        </Button.ToolTip>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

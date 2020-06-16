@@ -22,6 +22,11 @@
         </Grid.RowDefinitions>
         <Label Content="Готовятся" Grid.Row="0" Grid.Column="0" FontSize="25" HorizontalAlignment="Center" Margin="3" />
         <ItemsControl ItemsSource="{Binding NotCompletedOrders}" Margin="5 3 5 3" Grid.Row="1" Grid.Column="0">
+            <ItemsControl.ToolTip>
+                <Label FontSize="15">
+                    Данные заказы ещё не готовы.
+                </Label>
+            </ItemsControl.ToolTip>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -40,6 +45,11 @@
 
         <Label Content="Готовы" Grid.Row="0" Grid.Column="2" FontSize="25" HorizontalAlignment="Center" Margin="3" />
         <ItemsControl ItemsSource="{Binding CompletedOrders}" Margin="5 3 5 3" Grid.Row="1" Grid.Column="2">
+            <ItemsControl.ToolTip>
+                <Label FontSize="15">
+                    Данные заказы уже готовы и ожидают выдачи.
+                </Label>
+            </ItemsControl.ToolTip>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
